@@ -71,7 +71,9 @@
   width: 60%;
   height: 70vh;
   z-index: 9;
-  left: 13rem;
+  left: 21%;
+  top: 13%;
+  transform: translate(50, 50);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
