@@ -1,18 +1,17 @@
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { Pose } from "@mediapipe/pose";
 import React, { useRef, useEffect } from "react";
 import * as poseAll from "@mediapipe/pose";
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
-// import { MinimalFooter } from "../../../containers";
 import { PilatesImages } from "../../../pilatesposedata/PilatesImages";
 import { PilatesInstructions } from "../../../pilatesposedata/PilatesInstructions";
-// import SecNavBar from "../../../components/SecNavBar/SecNavBar";
 import useState from "react-usestateref";
 import DropDown from "../../../components/DropDown/DropDown";
 import { fstore } from "../../../firebaseconfig/firebaseconfig";
-import { updateDoc, doc } from "firebase/firestore";
 import RotateDevice from "../../../components/RotateDevice/RotateDevice";
 import "./Pilates-Practice-Beginner.css";
+import Container from "../../../components/Container/Container";
 
 const radians_to_degrees = (rad) => (rad * 180.0) / Math.PI;
 function find_angle(p1, p2, p3) {
@@ -27,6 +26,22 @@ function find_angle(p1, p2, p3) {
 }
 
 function Pilates_Practice() {
+  async function addRecentData() {
+    try {
+      const dataRef = doc(fstore, "users", localStorage.getItem("id"));
+      await updateDoc(dataRef, {
+        recentData: arrayUnion({
+          pose_name: prevPose,
+          level: DifficultyLevel,
+          time: Date().toString(),
+          repetition: counter,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   var exercise_pack = [
     {
       name: "Right Curl",
@@ -52,9 +67,9 @@ function Pilates_Practice() {
       max_angle: 77,
       min_angle: 10,
     },
-  ]; //pose array
-  // var current_exercise_index = 0;
+  ];
 
+  const DifficultyLevel = "Beginner";
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const connect = window.drawConnectors;
@@ -66,8 +81,10 @@ function Pilates_Practice() {
   var angle_deg;
 
   stage = null;
-  const [counter, setCounter] = useState(0); //hook to deal with counter
+  const [counter, setCounter] = useState(0);
   const [currentPose, setCurrentPose, currentPoseRef] = useState("Right Curl");
+  const [prevPose, setPrevPose] = useState("Right Curl");
+
   const [toggleImage, setToggleImage] = useState(true);
 
   const handleUpdate = async () => {
@@ -94,23 +111,20 @@ function Pilates_Practice() {
   function resetCounter() {
     setCounter(0);
   }
-  // const [exercise_name_for_display, setexercise_name_for_display] = useState("Left Curl") //hook to deal with current exercise to display
-  // function changeDisplay(){
-  //   setexercise_name_for_display(current_exercise.name);
-  // }
+
   useEffect(() => {
     resetCounter();
+    setPrevPose(currentPose);
+    if (counter > 0) addRecentData();
   }, [currentPose]);
 
+  useEffect(() => {
+    return () => {
+      if (counter > 0) addRecentData();
+    };
+  }, []);
+
   function onResults(results) {
-    // const video = webcamRef.current.video;
-    // const videoWidth = webcamRef.current.video.clientWidth;
-    // const videoHeight = webcamRef.current.video.clientHeight;
-
-    // Set canvas width
-    // canvasRef.current.width = videoWidth;
-    // canvasRef.current.height = videoHeight;
-
     const canvasElement = canvasRef.current;
     const canvasCtx = canvasElement.getContext("2d");
     try {
@@ -128,10 +142,6 @@ function Pilates_Practice() {
 
       canvasCtx.save();
       canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-      // canvasCtx.drawImage(results.segmentationMask, 0, 0,
-      //                     canvasElement.width, canvasElement.height);
-
-      // Only overwrite existing pixels.
       canvasCtx.globalCompositeOperation = "source-in";
       canvasCtx.fillStyle = "#ff5500";
       canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
@@ -145,7 +155,7 @@ function Pilates_Practice() {
         canvasElement.width,
         canvasElement.height
       );
-      window.drawConnectors
+      window.drawConnectors;
       canvasCtx.globalCompositeOperation = "source-over";
       connect(canvasCtx, results.poseLandmarks, poseAll.POSE_CONNECTIONS, {
         color: "#ff5500",
@@ -177,29 +187,11 @@ function Pilates_Practice() {
         incrementCounter();
         console.error(current_exercise.name);
       }
-      // if (counterRef.current === 20 && current_exercise_index < 2) {
-      //   resetCounter();
-
-      //   current_exercise_index += 1;
-      //   console.log("Updated current exercise index");
-      //   current_exercise = exercise_pack[current_exercise_index];
-      //   console.log(current_exercise.name);
-      //   changeDisplay();
-      // }
-      // if (counterRef.current === 20 && current_exercise_index === 2) {
-      //   resetCounter();
-
-      //   current_exercise=exercise_pack[exercise_pack.length-1]
-      //   console.log(current_exercise.name);
-      //   console.log("Finished");
-      //   changeDisplay();
-      // }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  // setInterval(())
   useEffect(() => {
     const pose = new Pose({
       locateFile: (file) => {
@@ -233,70 +225,59 @@ function Pilates_Practice() {
     return <RotateDevice />;
   } else {
     return (
-      <div className="Pilates-Practice-Beginner">
-        {/* <SecNavBar SlowLoad /> */}
-        <h2 className="pilates_practice_heading">
-          Practice Pilates (Beginner)
-        </h2>
-        <div className="dropdown_container">
-          <div className="dropdown_style">
-            <DropDown
-              exercise_pack={exercise_pack}
-              currentPose={currentPose}
-              setCurrentPose={setCurrentPose}
-            />
-          </div>
-        </div>
-        <div className="flexbox_container">
-          <div className="pilates_camera_and_canvas">
-            <Webcam
-              ref={webcamRef}
-              width="640px"
-              height="480px"
-              // style={{ backgroundColor: "black" }}
-            />{" "}
-            <div className="pilates_canvas_container">
-              <canvas
-                ref={canvasRef}
-                width="640px"
-                height="480px"
-                // style={{ backgroundColor: "black" }}
-              ></canvas>
-            </div>
-          </div>
-          {toggleImage ? (
-            <div className="pilates_pose_image_container">
-              <img
-                alt=""
-                src={PilatesImages[currentPose]}
-                onClick={() => {
-                  setToggleImage(false);
-                }}
+      <Container>
+        <div className="Pilates-Practice-Beginner">
+          <h2 className="pilates_practice_heading">
+            Practice Pilates (Beginner)
+          </h2>
+          <div className="dropdown_container">
+            <div className="dropdown_style">
+              <DropDown
+                exercise_pack={exercise_pack}
+                currentPose={currentPose}
+                setCurrentPose={setCurrentPose}
               />
             </div>
-          ) : (
-            <div className="pilates_pose_text_container">
-              <textarea
-                onClick={() => {
-                  setToggleImage(true);
-                }}
-                value={PilatesInstructions[currentPose]}
-                readOnly={true}
-                spellCheck={false}
-              ></textarea>
+          </div>
+          <div className="flexbox_container">
+            <div className="pilates_camera_and_canvas">
+              <Webcam ref={webcamRef} width="640px" height="480px" />{" "}
+              <div className="pilates_canvas_container">
+                <canvas ref={canvasRef} width="640px" height="480px"></canvas>
+              </div>
             </div>
-          )}
-        </div>
+            {toggleImage ? (
+              <div className="pilates_pose_image_container">
+                <img
+                  alt=""
+                  src={PilatesImages[currentPose]}
+                  onClick={() => {
+                    setToggleImage(false);
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="pilates_pose_text_container">
+                <textarea
+                  onClick={() => {
+                    setToggleImage(true);
+                  }}
+                  value={PilatesInstructions[currentPose]}
+                  readOnly={true}
+                  spellCheck={false}
+                ></textarea>
+              </div>
+            )}
+          </div>
 
-        <div className="feedback_container">
-          <div className="feedback_style">
-            <p>Current Exercise: {currentPose}</p>
-            <p>Repetitions: {counter}</p>
+          <div className="feedback_container">
+            <div className="feedback_style">
+              <p>Current Exercise: {currentPose}</p>
+              <p>Repetitions: {counter}</p>
+            </div>
           </div>
         </div>
-
-        {/* <MinimalFooter /> */}
-      </div>
+      </Container>
     );
   }
 }

@@ -44,22 +44,7 @@ export default function Signup() {
           "Side Lunge": 0,
           "Plie Squat": 0,
           "Tricep Kickback": 0,
-          // Initialize yoga data
-          chair: 0,
-          cobra: 0,
-          goddess_pose: 0,
-          triangle: 0,
-          tree: 0,
-          camel: 0,
-          plank: 0,
-          upward_dog: 0,
-          warrior1: 0,
-          warrior2: 0,
-          bound_ankle: 0,
-          bridge: 0,
-          down_dog: 0,
-          gate: 0,
-          half_moon: 0,
+          recentData: [],
         });
       }
       setLoading(false);
