@@ -40,7 +40,9 @@ function App() {
               path="/pilates-practice-beginner"
               element={
                 <PrivateRoute>
-                  <PilatesPracticeBeginner />
+                  <Container>
+                    <PilatesPracticeBeginner />
+                  </Container>
                 </PrivateRoute>
               }
             />

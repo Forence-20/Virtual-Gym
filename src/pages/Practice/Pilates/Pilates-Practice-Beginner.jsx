@@ -11,7 +11,6 @@ import DropDown from "../../../components/DropDown/DropDown";
 import { fstore } from "../../../firebaseconfig/firebaseconfig";
 import RotateDevice from "../../../components/RotateDevice/RotateDevice";
 import "./Pilates-Practice-Beginner.css";
-import Container from "../../../components/Container/Container";
 
 const radians_to_degrees = (rad) => (rad * 180.0) / Math.PI;
 function find_angle(p1, p2, p3) {
@@ -221,63 +220,62 @@ function Pilates_Practice() {
       camera.start();
     }
   }, []);
+
   if (window.innerWidth < 640) {
     return <RotateDevice />;
   } else {
     return (
-      <Container>
-        <div className="Pilates-Practice-Beginner">
-          <h2 className="pilates_practice_heading">
-            Practice Pilates (Beginner)
-          </h2>
-          <div className="dropdown_container">
-            <div className="dropdown_style">
-              <DropDown
-                exercise_pack={exercise_pack}
-                currentPose={currentPose}
-                setCurrentPose={setCurrentPose}
-              />
-            </div>
-          </div>
-          <div className="flexbox_container">
-            <div className="pilates_camera_and_canvas">
-              <Webcam ref={webcamRef} width="640px" height="480px" />{" "}
-              <div className="pilates_canvas_container">
-                <canvas ref={canvasRef} width="640px" height="480px"></canvas>
-              </div>
-            </div>
-            {toggleImage ? (
-              <div className="pilates_pose_image_container">
-                <img
-                  alt=""
-                  src={PilatesImages[currentPose]}
-                  onClick={() => {
-                    setToggleImage(false);
-                  }}
-                />
-              </div>
-            ) : (
-              <div className="pilates_pose_text_container">
-                <textarea
-                  onClick={() => {
-                    setToggleImage(true);
-                  }}
-                  value={PilatesInstructions[currentPose]}
-                  readOnly={true}
-                  spellCheck={false}
-                ></textarea>
-              </div>
-            )}
-          </div>
-
-          <div className="feedback_container">
-            <div className="feedback_style">
-              <p>Current Exercise: {currentPose}</p>
-              <p>Repetitions: {counter}</p>
-            </div>
+      <div className="Pilates-Practice-Beginner">
+        <h2 className="pilates_practice_heading">
+          Practice Pilates (Beginner)
+        </h2>
+        <div className="dropdown_container">
+          <div className="dropdown_style">
+            <DropDown
+              exercise_pack={exercise_pack}
+              currentPose={currentPose}
+              setCurrentPose={setCurrentPose}
+            />
           </div>
         </div>
-      </Container>
+        <div className="flexbox_container">
+          <div className="pilates_camera_and_canvas">
+            <Webcam ref={webcamRef} width="640px" height="480px" />{" "}
+            <div className="pilates_canvas_container">
+              <canvas ref={canvasRef} width="640px" height="480px"></canvas>
+            </div>
+          </div>
+          {toggleImage ? (
+            <div className="pilates_pose_image_container">
+              <img
+                alt=""
+                src={PilatesImages[currentPose]}
+                onClick={() => {
+                  setToggleImage(false);
+                }}
+              />
+            </div>
+          ) : (
+            <div className="pilates_pose_text_container">
+              <textarea
+                onClick={() => {
+                  setToggleImage(true);
+                }}
+                value={PilatesInstructions[currentPose]}
+                readOnly={true}
+                spellCheck={false}
+              ></textarea>
+            </div>
+          )}
+        </div>
+
+        <div className="feedback_container">
+          <div className="feedback_style">
+            <p>Current Exercise: {currentPose}</p>
+            <p>Repetitions: {counter}</p>
+          </div>
+        </div>
+      </div>
     );
   }
 }
