@@ -1,11 +1,17 @@
+.workout-Practice {
+  padding: 2rem;
+}
+
 .workout-Practice .workout_practice_heading {
   font-family: var(--font-family);
   font-weight: 800;
   font-size: 50px;
   line-height: 40px;
+  text-align: center;
   letter-spacing: -0.04em;
-  padding: 1rem;
-  margin-top: 5px;
+  background: rgba(255, 255, 255, 0.5);;
+  padding: 2rem;
+  margin-top: 10px;
 }
 .workout-Practice .dropdown_container {
   display: flex;

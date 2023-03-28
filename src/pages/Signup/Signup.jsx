@@ -88,8 +88,14 @@ export default function Signup() {
   }
 
   return (
-    <>
-      <Container
+    <div
+      style={{
+        height: "97%",
+        width: "97%",
+        borderRadius: "2rem",
+        backgroundColor: "rgba(255, 255, 255, 0.54)",
+      }}
+    >      <Container
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}
       >
@@ -130,6 +136,6 @@ export default function Signup() {
           </div>
         </div>
       </Container>
-    </>
+    </div>
   );
 }

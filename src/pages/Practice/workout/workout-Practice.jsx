@@ -63,7 +63,7 @@ function workout_Practice() {
   } else if (level == "Advanced") {
     exercise_pack = adv_exercise_pack;
   }
-  
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const connect = window.drawConnectors;
@@ -230,7 +230,7 @@ function workout_Practice() {
     return (
       <div className="workout-Practice">
         <h2 className="workout_practice_heading">
-          Practice workout (Beginner)
+          Workout - {level}
         </h2>
         <div className="dropdown_container">
           <div className="dropdown_style">
