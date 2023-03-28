@@ -1,6 +1,6 @@
-export const PilatesInstructions = {
-"Lateral Raise": [
-`1. Grab a set of dumbbells and stand straight.
+export const workoutInstructions = {
+  "Lateral Raise": [
+    `1. Grab a set of dumbbells and stand straight.
 
 2. With your palms facing down, lift the dumbbells and raise your arms out to the sides.
 
@@ -9,8 +9,8 @@ export const PilatesInstructions = {
 4. Repeat.
 `,
   ],
-"Left Curl": [
-`1. Stand straight with a dumbbell in the left hand, your feet shoulder-width apart, and hands by your sides.
+  "Left Curl": [
+    `1. Stand straight with a dumbbell in the left hand, your feet shoulder-width apart, and hands by your sides.
 
 2. Squeeze the biceps and lift the dumbbells. Keep the elbows close to your body and the upper arms stationary, only the forearms should move.
 
@@ -18,8 +18,8 @@ export const PilatesInstructions = {
 
 4. Repeat.`,
   ],
-"Right Curl": [
-`1. Stand straight with a dumbbell in the right hand, your feet shoulder-width apart, and hands by your sides.
+  "Right Curl": [
+    `1. Stand straight with a dumbbell in the right hand, your feet shoulder-width apart, and hands by your sides.
 
 2. Squeeze the biceps and lift the dumbbells. Keep the elbows close to your body and the upper arms stationary, only the forearms should move.
 
@@ -27,8 +27,8 @@ export const PilatesInstructions = {
 
 4. Repeat.`,
   ],
-"Lunges": [
-`1. Stand with your feet hip-width apart, keep your back straight, your shoulders back, and your abs tight.
+  Lunges: [
+    `1. Stand with your feet hip-width apart, keep your back straight, your shoulders back, and your abs tight.
 
 2. Take a step forward and slowly bend both knees, until your back knee is just above the floor.
 
@@ -36,8 +36,8 @@ export const PilatesInstructions = {
 
 4. Alternate legs until the set is complete.`,
   ],
-"Squats": [
-`1. Stand with feet a little wider than hip width, toes facing front.
+  Squats: [
+    `1. Stand with feet a little wider than hip width, toes facing front.
 
 2. Drive your hips back—bending at the knees and ankles and pressing your knees slightly open—as you…
 
@@ -47,8 +47,8 @@ export const PilatesInstructions = {
 
 5. Press into your heels and straighten legs to return to a standing upright position.`,
   ],
-"Side Lunge": [
-`1. Take a wide step with your left leg to the side of you. Both your toes should be pointed in the same direction and your feet should be flat on the floor.
+  "Side Lunge": [
+    `1. Take a wide step with your left leg to the side of you. Both your toes should be pointed in the same direction and your feet should be flat on the floor.
 
 2. Bend your left knee as you step outward and keep your hips back. It should feel like you are trying to sit just one side of your lower body in a chair.
 
@@ -57,8 +57,8 @@ export const PilatesInstructions = {
 4. Repeat
 `,
   ],
-"Plie Squat": [
-`1. Stand with your feet slightly wider than shoulder width apart and your toes pointed outward (about 45 degrees to the right from a normal stance).
+  "Plie Squat": [
+    `1. Stand with your feet slightly wider than shoulder width apart and your toes pointed outward (about 45 degrees to the right from a normal stance).
 
 2. Next, tilt your hips forward and maintain this hip position throughout the exercise.
 
@@ -66,8 +66,8 @@ export const PilatesInstructions = {
 
 4. Squat down until your butt and thighs are parallel to the floor. Return back to the starting position with your hips being brought forward at the top of the movement.`,
   ],
-"Tricep Kickback": [
-`1. Grab a set of dumbbells, bring your torso forward and bend your knees slightly.
+  "Tricep Kickback": [
+    `1. Grab a set of dumbbells, bring your torso forward and bend your knees slightly.
 
 2. Bring your elbows up, so that your upper arms are parallel to the floor, and kick back until your arms are fully extended.
 
@@ -75,7 +75,7 @@ export const PilatesInstructions = {
 
 4. Repeat.`,
   ],
-"No Pose":[
-`Well done now you can practice the learned exercises using the practice module.`  
-]
+  "No Pose": [
+    `Well done now you can practice the learned exercises using the practice module.`,
+  ],
 };

@@ -35,7 +35,7 @@ export default function Signup() {
       if (docs.docs.length === 0) {
         await addDoc(collection(fstore, "users"), {
           uid: res.user.uid,
-          // Initialize pilates data
+          // Initialize workout data
           "Left Curl": 0,
           Squats: 0,
           "Lateral Raise": 0,

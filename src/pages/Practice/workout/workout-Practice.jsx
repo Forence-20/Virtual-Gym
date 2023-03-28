@@ -1,16 +1,23 @@
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { Pose } from "@mediapipe/pose";
 import React, { useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import * as poseAll from "@mediapipe/pose";
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
-import { PilatesImages } from "../../../pilatesposedata/PilatesImages";
-import { PilatesInstructions } from "../../../pilatesposedata/PilatesInstructions";
+import { workoutImages } from "../../../workoutposedata/workoutImages";
+import { workoutInstructions } from "../../../workoutposedata/workoutInstructions";
 import useState from "react-usestateref";
 import DropDown from "../../../components/DropDown/DropDown";
 import { fstore } from "../../../firebaseconfig/firebaseconfig";
 import RotateDevice from "../../../components/RotateDevice/RotateDevice";
-import "./Pilates-Practice-Beginner.css";
+import {
+  beginner_exercise_pack,
+  inter_exercise_pack,
+  adv_exercise_pack,
+} from "./workoutData";
+import "./workout-Practice.css";
 
 const radians_to_degrees = (rad) => (rad * 180.0) / Math.PI;
 function find_angle(p1, p2, p3) {
@@ -24,15 +31,15 @@ function find_angle(p1, p2, p3) {
   return angle_degrees;
 }
 
-function Pilates_Practice() {
+function workout_Practice() {
   async function addRecentData() {
-    if (counterRef.current > 0){
+    if (counterRef.current > 0) {
       try {
         const dataRef = doc(fstore, "users", localStorage.getItem("id"));
         await updateDoc(dataRef, {
           recentData: arrayUnion({
-            pose_name: prevPose,
-            level: DifficultyLevel,
+            pose_name: prevPoseRef.current,
+            level: level,
             time: Date().toString(),
             repetition: counterRef.current,
           }),
@@ -41,37 +48,22 @@ function Pilates_Practice() {
         console.log(error);
       }
     }
-    
   }
 
-  var exercise_pack = [
-    {
-      name: "Right Curl",
-      pose_landmark_1: 12,
-      pose_landmark_2: 14,
-      pose_landmark_3: 16,
-      max_angle: 160,
-      min_angle: 30,
-    },
-    {
-      name: "Left Curl",
-      pose_landmark_1: 11,
-      pose_landmark_2: 13,
-      pose_landmark_3: 15,
-      max_angle: 160,
-      min_angle: 30,
-    },
-    {
-      name: "Lateral Raise",
-      pose_landmark_1: 13,
-      pose_landmark_2: 11,
-      pose_landmark_3: 23,
-      max_angle: 77,
-      min_angle: 10,
-    },
-  ];
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const level = params.get("level");
+  
+  var exercise_pack = beginner_exercise_pack;
 
-  const DifficultyLevel = "Beginner";
+  if (level == "Beginner") {
+    exercise_pack = beginner_exercise_pack;
+  } else if (level == "Intermediate") {
+    exercise_pack = inter_exercise_pack;
+  } else if (level == "Advanced") {
+    exercise_pack = adv_exercise_pack;
+  }
+  
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const connect = window.drawConnectors;
@@ -84,10 +76,13 @@ function Pilates_Practice() {
 
   stage = null;
   const [counter, setCounter, counterRef] = useState(0);
-  const [currentPose, setCurrentPose, currentPoseRef] = useState("Right Curl");
-  const [prevPose, setPrevPose] = useState("Right Curl");
-
+  const [currentPose, setCurrentPose, currentPoseRef] = useState(
+    exercise_pack.at(0).name
+  );
+  const [prevPose, setPrevPose, prevPoseRef] = useState();
   const [toggleImage, setToggleImage] = useState(true);
+
+
 
   const handleUpdate = async () => {
     console.log(parseInt(localStorage.getItem(currentPoseRef.current)) + 1);
@@ -106,6 +101,7 @@ function Pilates_Practice() {
       console.log(err);
     }
   };
+
   function incrementCounter() {
     setCounter((prevCounter) => prevCounter + 1);
     handleUpdate();
@@ -115,15 +111,15 @@ function Pilates_Practice() {
   }
 
   useEffect(() => {
+    addRecentData();
     resetCounter();
     setPrevPose(currentPose);
-    addRecentData();
   }, [currentPose]);
 
   useEffect(() => {
     return () => {
       addRecentData();
-      camera?.stop()
+      camera?.stop();
     };
   }, []);
 
@@ -196,6 +192,9 @@ function Pilates_Practice() {
   }
 
   useEffect(() => {
+    setTimeout(() => {}, 1000);
+    console.log(exercise_pack);
+
     const pose = new Pose({
       locateFile: (file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
@@ -229,9 +228,9 @@ function Pilates_Practice() {
     return <RotateDevice />;
   } else {
     return (
-      <div className="Pilates-Practice-Beginner">
-        <h2 className="pilates_practice_heading">
-          Practice Pilates (Beginner)
+      <div className="workout-Practice">
+        <h2 className="workout_practice_heading">
+          Practice workout (Beginner)
         </h2>
         <div className="dropdown_container">
           <div className="dropdown_style">
@@ -243,29 +242,29 @@ function Pilates_Practice() {
           </div>
         </div>
         <div className="flexbox_container">
-          <div className="pilates_camera_and_canvas">
+          <div className="workout_camera_and_canvas">
             <Webcam ref={webcamRef} width="640px" height="480px" />{" "}
-            <div className="pilates_canvas_container">
+            <div className="workout_canvas_container">
               <canvas ref={canvasRef} width="640px" height="480px"></canvas>
             </div>
           </div>
           {toggleImage ? (
-            <div className="pilates_pose_image_container">
+            <div className="workout_pose_image_container">
               <img
                 alt=""
-                src={PilatesImages[currentPose]}
+                src={workoutImages[currentPose]}
                 onClick={() => {
                   setToggleImage(false);
                 }}
               />
             </div>
           ) : (
-            <div className="pilates_pose_text_container">
+            <div className="workout_pose_text_container">
               <textarea
                 onClick={() => {
                   setToggleImage(true);
                 }}
-                value={PilatesInstructions[currentPose]}
+                value={workoutInstructions[currentPose]}
                 readOnly={true}
                 spellCheck={false}
               ></textarea>
@@ -283,4 +282,4 @@ function Pilates_Practice() {
     );
   }
 }
-export default Pilates_Practice;
+export default workout_Practice;

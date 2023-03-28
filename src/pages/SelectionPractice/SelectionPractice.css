@@ -7,23 +7,23 @@
   margin: 50px;
 }
 
-.SelectionPractice .pilates_card_img {
+.SelectionPractice .workout_card_img {
   width: 200px;
   height: 200px;
 
   margin: 0 auto;
 }
 
-.SelectionPractice .pilates_card_title {
+.SelectionPractice .workout_card_title {
   font-family: var(--font-family);
   text-align: center;
 }
-.SelectionPractice .pilates_card_text {
+.SelectionPractice .workout_card_text {
   font-family: var(--font-family);
   text-align: center;
 }
 
-.SelectionPractice .pilates_card_selector {
+.SelectionPractice .workout_card_selector {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -34,7 +34,7 @@
     flex-direction: column;
   }
 
-  .SelectionPractice .pilates_card {
+  .SelectionPractice .workout_card {
     align-self: center;
   }
 }

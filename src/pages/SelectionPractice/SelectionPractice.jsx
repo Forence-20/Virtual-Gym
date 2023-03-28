@@ -6,53 +6,49 @@ import resistanceband from "../../assets/resistanceband.png";
 import "./SelectionPractice.css";
 export default function SelectionPractice() {
   const navigate = useNavigate();
-  const [PilatesLearnRoute, setPilatesLearnRoute] = useState(
-    "/pilates-practice-beginner"
+  const [workoutLearnRoute, setworkoutLearnRoute] = useState(
+    "/workout-practice?level=Beginner"
   );
   return (
-
     <div className="SelectionPractice">
       <div className="practice_select_container">
-        <div className="pilates_practice_select">
-          <Card className="pilates_card">
+        <div className="workout_practice_select">
+          <Card className="workout_card">
             <Card.Img
-              className="pilates_card_img"
+              className="workout_card_img"
               variant="top"
               src={resistanceband}
             />
             <Card.Body>
-              <Card.Title className="pilates_card_title">
-                Practice Pilates
+              <Card.Title className="workout_card_title">
+                Practice workout
               </Card.Title>
-              <Card.Text className="pilates_card_text">
-                Practice pilates from beginner to advanced.
+              <Card.Text className="workout_card_text">
+                Practice workout from beginner to advanced.
               </Card.Text>
-              <div className="pilates_card_selector">
+              <div className="workout_card_selector">
                 <DropdownButton
-                  className="pilates_dropdown"
-                  title={
-                    PilatesLearnRoute.substring(18).charAt(0).toUpperCase() +
-                    PilatesLearnRoute.substring(18).slice(1)
-                  }
+                  className="workout_dropdown"
+                  title={workoutLearnRoute.substring(23).slice(1)}
                   onSelect={(e) => {
-                    setPilatesLearnRoute(e);
+                    setworkoutLearnRoute(e);
                   }}
                 >
-                  <Dropdown.Item eventKey="/pilates-practice-beginner">
+                  <Dropdown.Item eventKey="/workout-practice?level=Beginner">
                     {" "}
                     Beginner
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="/pilates-practice-intermediate">
+                  <Dropdown.Item eventKey="/workout-practice?level=Intermediate">
                     {" "}
                     Intermediate
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="/pilates-practice-advanced">
+                  <Dropdown.Item eventKey="/workout-practice?level=Advanced">
                     Advanced
                   </Dropdown.Item>
                 </DropdownButton>
                 <Button
                   variant="warning"
-                  onClick={() => navigate(PilatesLearnRoute)}
+                  onClick={() => navigate(workoutLearnRoute)}
                 >
                   Go
                 </Button>
@@ -64,7 +60,5 @@ export default function SelectionPractice() {
 
       {/* <MinimalFooter /> */}
     </div>
-    
-
   );
 }

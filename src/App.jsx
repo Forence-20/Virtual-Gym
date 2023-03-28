@@ -12,14 +12,8 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Container from "./components/Container/Container";
 
-const PilatesPracticeBeginner = loadable(() =>
-  import("./pages/Practice/Pilates/Pilates-Practice-Beginner")
-);
-const PilatesPracticeIntermediate = loadable(() =>
-  import("./pages/Practice/Pilates/Pilates-Practice-Intermediate")
-);
-const PilatesPracticeAdvanced = loadable(() =>
-  import("./pages/Practice/Pilates/Pilates-Practice-Advanced")
+const WorkoutPractice = loadable(() =>
+  import("./pages/Practice/workout/workout-Practice")
 );
 
 function App() {
@@ -29,19 +23,11 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route
-              path="/pilates-practice-intermediate"
-              element={
-                <PrivateRoute>
-                  <PilatesPracticeIntermediate />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/pilates-practice-beginner"
+              path="/workout-practice"
               element={
                 <PrivateRoute>
                   <Container>
-                    <PilatesPracticeBeginner />
+                    <WorkoutPractice />
                   </Container>
                 </PrivateRoute>
               }
@@ -59,14 +45,6 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route
-              path="/pilates-practice-advanced"
-              element={
-                <PrivateRoute>
-                  <PilatesPracticeAdvanced />
-                </PrivateRoute>
-              }
-            />
 
             <Route
               path="/selection-practice"

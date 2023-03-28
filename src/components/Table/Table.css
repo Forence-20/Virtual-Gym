@@ -2,6 +2,15 @@
   padding: 10px;
 }
 
+.Table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+  height: 500px;
+}
+
 .MuiTableRow-root.MuiTableRow-head > * {
   font-weight: bold !important;
 }
