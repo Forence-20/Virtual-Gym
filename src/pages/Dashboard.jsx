@@ -20,14 +20,29 @@ const Dashboard = () => {
       returnedData = Object.assign(
         docs.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       )[0];
-      localStorage.setItem("Left Curl", returnedData["Left Curl"]);
-      localStorage.setItem("Squats", returnedData["Squats"]);
-      localStorage.setItem("Lateral Raise", returnedData["Lateral Raise"]);
-      localStorage.setItem("Right Curl", returnedData["Right Curl"]);
-      localStorage.setItem("Lunges", returnedData["Lunges"]);
-      localStorage.setItem("Side Lunge", returnedData["Side Lunge"]);
-      localStorage.setItem("Plie Squat", returnedData["Plie Squat"]);
-      localStorage.setItem("Tricep Kickback", returnedData["Tricep Kickback"]);
+
+      //Beginner
+      localStorage.setItem("Left Curl", returnedData.Beginner["Left Curl"]);
+      localStorage.setItem(
+        "Lateral Raise",
+        returnedData.Beginner["Lateral Raise"]
+      );
+      localStorage.setItem("Right Curl", returnedData.Beginner["Right Curl"]);
+
+      //Intermediate
+      localStorage.setItem("Squats", returnedData.Intermediate["Squats"]);
+      localStorage.setItem("Lunges", returnedData.Intermediate["Lunges"]);
+      localStorage.setItem(
+        "Side Lunge",
+        returnedData.Intermediate["Side Lunge"]
+      );
+
+      //Advanced
+      localStorage.setItem("Plie Squat", returnedData.Advanced["Plie Squat"]);
+      localStorage.setItem(
+        "Tricep Kickback",
+        returnedData.Advanced["Tricep Kickback"]
+      );
 
       localStorage.setItem("id", returnedData.id);
     };

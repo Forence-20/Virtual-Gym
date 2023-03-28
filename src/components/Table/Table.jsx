@@ -48,14 +48,8 @@ export default function BasicTable() {
   const fetchData = async () => {
     const docRef = doc(fstore, "users", localStorage.getItem("id"));
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
+
     setRecentData(docSnap.data().recentData.reverse());
-    console.log(recentData);
   };
 
   useEffect(() => {
@@ -81,7 +75,7 @@ export default function BasicTable() {
           </TableHead>
           <TableBody>
             {recentData != undefined
-              ? recentData.map((pose,idx) => (
+              ? recentData.map((pose, idx) => (
                   <TableRow
                     key={pose.pose_name + idx}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

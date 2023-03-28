@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import Logo from "../../imgs/logo.png";
+import Logo from "../../../src/assets/logo.png";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { SidebarData } from "../../Data/Data";

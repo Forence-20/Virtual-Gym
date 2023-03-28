@@ -36,14 +36,20 @@ export default function Signup() {
         await addDoc(collection(fstore, "users"), {
           uid: res.user.uid,
           // Initialize workout data
-          "Left Curl": 0,
-          Squats: 0,
-          "Lateral Raise": 0,
-          "Right Curl": 0,
-          Lunges: 0,
-          "Side Lunge": 0,
-          "Plie Squat": 0,
-          "Tricep Kickback": 0,
+          Beginner: {
+            "Left Curl": 0,
+            "Right Curl": 0,
+            "Lateral Raise": 0,
+          },
+          Intermediate: {
+            Squats: 0,
+            Lunges: 0,
+            "Side Lunge": 0,
+          },
+          Advanced: {
+            "Plie Squat": 0,
+            "Tricep Kickback": 0,
+          },
           recentData: [],
         });
       }
@@ -95,7 +101,9 @@ export default function Signup() {
         borderRadius: "2rem",
         backgroundColor: "rgba(255, 255, 255, 0.54)",
       }}
-    >      <Container
+    >
+      {" "}
+      <Container
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}
       >

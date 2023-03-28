@@ -53,7 +53,7 @@ function workout_Practice() {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const level = params.get("level");
-  
+
   var exercise_pack = beginner_exercise_pack;
 
   if (level == "Beginner") {
@@ -82,15 +82,17 @@ function workout_Practice() {
   const [prevPose, setPrevPose, prevPoseRef] = useState();
   const [toggleImage, setToggleImage] = useState(true);
 
-
-
   const handleUpdate = async () => {
     console.log(parseInt(localStorage.getItem(currentPoseRef.current)) + 1);
     try {
       const dataRef = doc(fstore, "users", localStorage.getItem("id"));
 
+      console.log(currentPoseRef.current);
+
+      console.log(dataRef);
+
       await updateDoc(dataRef, {
-        [currentPoseRef.current]:
+        [`${level}.${currentPoseRef.current}`]:
           parseInt(localStorage.getItem(currentPoseRef.current)) + 1,
       });
       localStorage.setItem(
@@ -192,9 +194,6 @@ function workout_Practice() {
   }
 
   useEffect(() => {
-    setTimeout(() => {}, 1000);
-    console.log(exercise_pack);
-
     const pose = new Pose({
       locateFile: (file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
@@ -229,9 +228,7 @@ function workout_Practice() {
   } else {
     return (
       <div className="workout-Practice">
-        <h2 className="workout_practice_heading">
-          Workout - {level}
-        </h2>
+        <h2 className="workout_practice_heading">Workout - {level}</h2>
         <div className="dropdown_container">
           <div className="dropdown_style">
             <DropDown

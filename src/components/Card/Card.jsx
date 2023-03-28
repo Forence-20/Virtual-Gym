@@ -52,13 +52,12 @@ function CompactCard({ param, setExpanded }) {
 function ExpandedCard({ param, setExpanded }) {
   const data = {
     options: {
-        plotOptions: {
-          bar: {
-            borderRadius: 4,
-            horizontal: false
-          }
-
-      }
+      plotOptions: {
+        bar: {
+          borderRadius: 4,
+          horizontal: false,
+        },
+      },
     },
   };
   return (
