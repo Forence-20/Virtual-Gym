@@ -26,19 +26,22 @@ function find_angle(p1, p2, p3) {
 
 function Pilates_Practice() {
   async function addRecentData() {
-    try {
-      const dataRef = doc(fstore, "users", localStorage.getItem("id"));
-      await updateDoc(dataRef, {
-        recentData: arrayUnion({
-          pose_name: prevPose,
-          level: DifficultyLevel,
-          time: Date().toString(),
-          repetition: counter,
-        }),
-      });
-    } catch (error) {
-      console.log(error);
+    if (counterRef.current > 0){
+      try {
+        const dataRef = doc(fstore, "users", localStorage.getItem("id"));
+        await updateDoc(dataRef, {
+          recentData: arrayUnion({
+            pose_name: prevPose,
+            level: DifficultyLevel,
+            time: Date().toString(),
+            repetition: counterRef.current,
+          }),
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
+    
   }
 
   var exercise_pack = [
@@ -80,7 +83,7 @@ function Pilates_Practice() {
   var angle_deg;
 
   stage = null;
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter, counterRef] = useState(0);
   const [currentPose, setCurrentPose, currentPoseRef] = useState("Right Curl");
   const [prevPose, setPrevPose] = useState("Right Curl");
 
@@ -114,12 +117,13 @@ function Pilates_Practice() {
   useEffect(() => {
     resetCounter();
     setPrevPose(currentPose);
-    if (counter > 0) addRecentData();
+    addRecentData();
   }, [currentPose]);
 
   useEffect(() => {
     return () => {
-      if (counter > 0) addRecentData();
+      addRecentData();
+      camera?.stop()
     };
   }, []);
 

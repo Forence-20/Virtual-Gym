@@ -81,9 +81,9 @@ export default function BasicTable() {
           </TableHead>
           <TableBody>
             {recentData != undefined
-              ? recentData.map((pose) => (
+              ? recentData.map((pose,idx) => (
                   <TableRow
-                    key={pose.pose_name}
+                    key={pose.pose_name + idx}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
