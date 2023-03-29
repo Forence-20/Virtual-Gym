@@ -5,11 +5,9 @@ import {
   UilUsersAlt,
   UilPackage,
   UilChart,
-  UilUsdSquare,
-  UilMoneyWithdrawal,
 } from "@iconscout/react-unicons";
 
-import { FaBatteryQuarter } from "react-icons/fa";
+import { FaBatteryQuarter, FaBatteryHalf, FaBatteryFull } from "react-icons/fa";
 
 // Sidebar Data
 export const SidebarData = [
@@ -39,65 +37,35 @@ export const SidebarData = [
 
 export const CardsData = [
   {
-    title: "Beginner Level",
+    title: "Beginner",
     color: {
-      backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%",
+      backGround:
+        "linear-gradient(rgb(231 201 255) 0%, rgb(196, 132, 243) 100%)",
       boxShadow: "0px 10px 20px 0px #e0c6f5",
     },
     barValue: 70,
     value: "25,970",
     png: FaBatteryQuarter,
-    series: [
-      {
-        name: "Begineer",
-        data: [
-          {
-            x: "Right Curl",
-            y: 0,
-          },
-          {
-            x: "Left Curl",
-            y: 0,
-          },
-          {
-            x: "Lateral Raises",
-            y: 0,
-          },
-        ],
-      },
-    ],
   },
   {
-    title: "Revenue",
+    title: "Intermediate",
     color: {
-      backGround: "linear-gradient(180deg, #ff9190 0%, #fc929D 100%)",
+      backGround:
+        "linear-gradient(rgb(255 205 204) 0%, rgb(252, 146, 157) 100%)",
       boxShadow: "0px 10px 20px 0px #FDC0C7",
     },
     barValue: 80,
     value: "14,270",
-    png: UilMoneyWithdrawal,
-    series: [
-      {
-        name: "Revenue",
-        data: [10, 100, 50, 70, 80, 30, 40],
-      },
-    ],
+    png: FaBatteryHalf,
   },
   {
-    title: "Expenses",
+    title: "Advanced",
     color: {
-      backGround:
-        "linear-gradient(rgb(248,212,154) -146.42%, rgb(255,202,113) -46.42%)",
+      backGround: "linear-gradient(rgb(237 222 110) 0%, rgb(150 157 53) 100%)",
       boxShadow: "0px 10px 20px 0px #F9D59B",
     },
     barValue: 60,
     value: "4,270",
-    png: UilClipboardAlt,
-    series: [
-      {
-        name: "Expenses",
-        data: [10, 25, 15, 30, 12, 15, 20],
-      },
-    ],
+    png: FaBatteryFull,
   },
 ];
