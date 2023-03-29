@@ -1,15 +1,21 @@
+@font-face {
+  font-family: "Rajdhani-Bold";
+  src: url("../../fonts/Rajdhani-Bold.ttf") format("truetype");
+}
+
 .workout-Practice {
   padding: 2rem;
 }
 
 .workout-Practice .workout_practice_heading {
-  font-family: var(--font-family);
+  font-family: "Rajdhani-Bold";
+  color: #ff8999;
   font-weight: 800;
   font-size: 50px;
   line-height: 40px;
   text-align: center;
   letter-spacing: -0.04em;
-  background: rgba(255, 255, 255, 0.5);;
+  background: rgba(255, 255, 255, 0.5);
   padding: 2rem;
   margin-top: 10px;
 }
@@ -22,8 +28,10 @@
 .workout-Practice .flexbox_container {
   display: flex;
   justify-content: center;
-  gap: 200px;
+  gap: 20px;
   margin-bottom: 30px;
+  margin-top: 30px;
+  align-items: center;
   flex-wrap: wrap;
 }
 .workout-Practice .workout_camera_and_canvas {
@@ -35,33 +43,39 @@
   left: 0;
 }
 
-.workout-Practice .feedback_container {
-  display: flex;
-  justify-content: right;
-  width: 82%;
-  margin-bottom: 20px;
+#dropdown-basic-button {
+  margin-top: 25px;
+  font-family: "Rajdhani-Bold";
 }
 
-.workout-Practice .feedback_style p {
-  font-family: var(--font-family);
-  font-weight: 550;
-  font-size: 25px;
+.counter {
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  background: #ff899969 !important;
+  font-family: "Rajdhani-Bold";
+  color: #ff8999;
+  font-weight: 1550;
+  font-size: 90px;
+  line-height: 150px;
+  text-align: center;
 }
 
 .workout-Practice .workout_pose_image_container img {
-  width: 500px;
-  height: 500px;
+  width: 640px;
+  height: 480px;
 }
 
 .workout-Practice .workout_pose_text_container {
-  width: 500px;
-  height: 500px;
+  width: 640px;
+  height: 480px;
 }
 .workout-Practice .workout_pose_text_container textarea {
-  width: 500px;
-  height: 500px;
+  width: 640px;
+  height: 480px;
   text-align: justify;
-  font-family: var(--font-family);
+  font-family: "Rajdhani-Bold";
+  color: #ff8999;
   cursor: default;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

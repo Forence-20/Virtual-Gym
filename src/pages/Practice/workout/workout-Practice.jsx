@@ -245,6 +245,9 @@ function workout_Practice() {
               <canvas ref={canvasRef} width="640px" height="480px"></canvas>
             </div>
           </div>
+          <div className="counter">
+            {counter}
+          </div>
           {toggleImage ? (
             <div className="workout_pose_image_container">
               <img
@@ -267,13 +270,6 @@ function workout_Practice() {
               ></textarea>
             </div>
           )}
-        </div>
-
-        <div className="feedback_container">
-          <div className="feedback_style">
-            <p>Current Exercise: {currentPose}</p>
-            <p>Repetitions: {counter}</p>
-          </div>
         </div>
       </div>
     );
