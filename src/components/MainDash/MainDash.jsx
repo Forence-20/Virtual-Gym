@@ -57,7 +57,6 @@ const MainDash = () => {
         });
       }
       if (index == seriesArray.length) seriesArray.push(seriesTempArray[index]);
-      console.log(seriesArray);
     }
 
     setSeriesData(seriesArray);
@@ -65,7 +64,6 @@ const MainDash = () => {
 
   useEffect(() => {
     fetchData();
-    console.log(seriesData);
   }, []);
 
   return seriesData == null ? null : (

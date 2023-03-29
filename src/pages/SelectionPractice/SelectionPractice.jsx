@@ -14,7 +14,12 @@ export default function SelectionPractice() {
         <div className="workout_practice_select">
           <Card
             className="workout_card"
-            style={{ display: "flex", flexDirection: "row" }}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              margin: "2rem",
+              color: "#FF8999",
+            }}
           >
             <Card.Img
               className="workout_card_img"
@@ -49,17 +54,22 @@ export default function SelectionPractice() {
                   </Dropdown.Item>
                 </DropdownButton>
                 <Button
-                  variant="warning"
+                  className="GoBtn"
                   onClick={() => navigate(workoutLearnRoute)}
                 >
-                  Go
+                  GO
                 </Button>
               </div>
             </Card.Body>
           </Card>
           <Card
             className="show_card"
-            style={{ display: "flex", flexDirection: "row" }}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              margin: "2rem",
+              color: "white",
+            }}
           >
             <Card.Body>
               <Card.Text className="show_card_text">Learn</Card.Text>
