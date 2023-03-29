@@ -39,10 +39,7 @@ const Sidebar = () => {
       >
         {/* logo */}
         <div className="logo">
-          <img src={Logo} alt="" />
-          <span>
-            Sh<span>o</span>ps
-          </span>
+          <img src={Logo} alt="logo" />
         </div>
         {/* menu */}
         <div className="menu">
@@ -52,9 +49,9 @@ const Sidebar = () => {
                 className={selected === index ? "menuItem active" : "menuItem"}
                 key={index}
                 onClick={() => {
-                  setSelected(index)
-                  
-                  navigate(item?.path)
+                  setSelected(index);
+
+                  navigate(item?.path);
                 }}
               >
                 <item.icon />
@@ -63,15 +60,16 @@ const Sidebar = () => {
             );
           })}
           <div className="menuItem">
-            <UilSignOutAlt onClick={async()=>{
-              try {
-                await logout();
-                window.open("/login", "_top")
-               
-              } catch {
-                setError("Failed to log out");
-              }
-            }} />
+            <UilSignOutAlt
+              onClick={async () => {
+                try {
+                  await logout();
+                  window.open("/login", "_top");
+                } catch {
+                  setError("Failed to log out");
+                }
+              }}
+            />
           </div>
         </div>
       </motion.div>
