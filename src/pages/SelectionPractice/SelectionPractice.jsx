@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import lotus from "../../assets/lotus.png";
-import resistanceband from "../../assets/resistanceband.png";
+import gym_practice from "../../assets/gym_practice.jpg";
 import "./SelectionPractice.css";
 export default function SelectionPractice() {
   const navigate = useNavigate();
@@ -13,18 +12,21 @@ export default function SelectionPractice() {
     <div className="SelectionPractice">
       <div className="practice_select_container">
         <div className="workout_practice_select">
-          <Card className="workout_card">
+          <Card
+            className="workout_card"
+            style={{ display: "flex", flexDirection: "row" }}
+          >
             <Card.Img
               className="workout_card_img"
               variant="top"
-              src={resistanceband}
+              src={gym_practice}
             />
             <Card.Body>
               <Card.Title className="workout_card_title">
                 Practice workout
               </Card.Title>
               <Card.Text className="workout_card_text">
-                Practice workout from beginner to advanced.
+                Choose your level ranging from beginner to advance.
               </Card.Text>
               <div className="workout_card_selector">
                 <DropdownButton
@@ -53,6 +55,16 @@ export default function SelectionPractice() {
                   Go
                 </Button>
               </div>
+            </Card.Body>
+          </Card>
+          <Card
+            className="show_card"
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            <Card.Body>
+              <Card.Text className="show_card_text">Learn</Card.Text>
+              <Card.Text className="show_card_text">Practice</Card.Text>
+              <Card.Text className="show_card_text">Connect</Card.Text>
             </Card.Body>
           </Card>
         </div>

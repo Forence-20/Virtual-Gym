@@ -36,6 +36,7 @@ export default function Signup() {
         await addDoc(collection(fstore, "users"), {
           uid: res.user.uid,
           // Initialize workout data
+          DifficultyLevels: ["Beginner", "Intermediate", "Advanced"],
           Beginner: {
             "Left Curl": 0,
             "Right Curl": 0,

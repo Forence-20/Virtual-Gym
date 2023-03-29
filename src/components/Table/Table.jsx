@@ -12,17 +12,6 @@ import "./Table.css";
 
 import { doc, getDoc } from "firebase/firestore";
 
-// function createData(name, trackingId, date, status) {
-//   return { name, trackingId, date, status };
-// }
-
-// const recentData = [
-//   createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-//   createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-//   createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-//   createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-// ];
-
 const makeStyles = (rep) => {
   if (rep > 15) {
     return {
