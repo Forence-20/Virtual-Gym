@@ -2,6 +2,10 @@
   padding: 10px;
 }
 
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 .Table {
   position: relative;
   display: flex;
