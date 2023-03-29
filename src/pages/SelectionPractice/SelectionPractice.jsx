@@ -64,12 +64,6 @@ export default function SelectionPractice() {
           </Card>
           <Card
             className="show_card"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              margin: "2rem",
-              color: "white",
-            }}
           >
             <Card.Body>
               <Card.Text className="show_card_text">Learn</Card.Text>

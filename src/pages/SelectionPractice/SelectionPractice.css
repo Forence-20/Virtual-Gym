@@ -1,11 +1,11 @@
 @font-face {
-  font-family: "Rajdhani";
+  font-family: "Rajdhani-Bold";
   src: url("../../fonts/Rajdhani-Bold.ttf") format("truetype");
 }
 
 .SelectionPractice {
   display: grid;
-  font-family: "Rajdhani";
+  font-family: "Rajdhani-Bold";
   align-content: center;
   text-align: center;
   width: 95%;
@@ -63,6 +63,10 @@
 
 .show_card {
   background: #ffcb00 !important;
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  color: white;
 }
 
 .dropdown-toggle {
@@ -86,6 +90,29 @@
 @media screen and (max-width: 1024px) {
   .SelectionPractice .practice_select_container {
     flex-direction: column;
+  }
+
+  .dropdown-toggle {
+    font-size: x-large !important;
+    background: #ff899969 !important;
+    color: #ff8999 !important;
+    width: max-content !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-direction: row !important;
+  }
+
+  img {
+    display: none;
+  }
+
+  .show_card {
+    display: none !important;
+  }
+
+  .workout_practice_select {
+    display: block;
   }
 
   .SelectionPractice .workout_card {
