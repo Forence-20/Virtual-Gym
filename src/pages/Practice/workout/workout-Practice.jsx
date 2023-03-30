@@ -186,7 +186,7 @@ function workout_Practice() {
         stage = "up";
 
         incrementCounter();
-        console.error(current_exercise.name);
+        console.log(current_exercise.name);
       }
     } catch (error) {
       console.log(error);
@@ -245,9 +245,7 @@ function workout_Practice() {
               <canvas ref={canvasRef} width="640px" height="480px"></canvas>
             </div>
           </div>
-          <div className="counter">
-            {counter}
-          </div>
+          <div className="counter">{counter}</div>
           {toggleImage ? (
             <div className="workout_pose_image_container">
               <img

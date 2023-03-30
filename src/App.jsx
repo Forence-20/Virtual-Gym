@@ -8,6 +8,7 @@ import loadable from "@loadable/component";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Container from "./components/Container/Container";
@@ -56,14 +57,16 @@ function App() {
                 </PrivateRoute>
               }
             />
-            {/* <Route
-            path="/about"
-            element={
-              <PrivateRoute>
-                <AboutUs />
-              </PrivateRoute>
-            }
-          />  */}
+            <Route
+              path="/about"
+              element={
+                <PrivateRoute>
+                  <Container>
+                    <AboutUs />
+                  </Container>
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </AuthProvider>
       </Router>

@@ -1,8 +1,14 @@
+@font-face {
+  font-family: "Rajdhani-Regular";
+  src: url("../../fonts//Rajdhani-Medium.ttf") format("truetype");
+}
+
 .MainDash {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   width: 85%;
+  text-align: center;
   margin: 35px;
 }
 

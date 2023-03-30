@@ -23,15 +23,16 @@ export const SidebarData = [
   },
   {
     icon: UilUsersAlt,
-    heading: "Customers",
+    heading: "Learn",
   },
   {
     icon: UilPackage,
-    heading: "Products",
+    heading: "Tutorials",
   },
   {
     icon: UilChart,
-    heading: "Analytics",
+    heading: "About",
+    path: "/about",
   },
 ];
 
