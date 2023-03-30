@@ -78,6 +78,7 @@
   justify-content: space-between !important;
   align-items: center !important;
   flex-direction: row !important;
+  border: 0px !important;
 }
 
 .GoBtn {
@@ -85,6 +86,11 @@
   background: #ff899969 !important;
   width: 70px !important;
   color: #ff8999 !important;
+  border: 0px !important;
+}
+
+.card {
+  --bs-card-border-width: 0px !important;
 }
 
 @media screen and (max-width: 1024px) {

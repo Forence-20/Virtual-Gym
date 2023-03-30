@@ -4,6 +4,7 @@ import { fstore } from "../../firebaseconfig/firebaseconfig";
 import "./MainDash.css";
 import Cards from "../Cards/Cards";
 import Table from "../Table/Table";
+import Loading from "../Loading/Loading";
 
 const MainDash = () => {
   const seriesBeginner = [
@@ -66,7 +67,9 @@ const MainDash = () => {
     fetchData();
   }, []);
 
-  return seriesData == null ? null : (
+  return seriesData == null ? (
+    <Loading />
+  ) : (
     <div className="MainDash">
       <h1>Dashboard</h1>
       <Cards data={seriesData} />
