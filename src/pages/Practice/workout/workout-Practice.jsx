@@ -81,6 +81,7 @@ function workout_Practice() {
   );
   const [prevPose, setPrevPose, prevPoseRef] = useState();
   const [toggleImage, setToggleImage] = useState(true);
+  const [showMessage, setShowMessage] = useState(true)
 
   const handleUpdate = async () => {
     console.log(parseInt(localStorage.getItem(currentPoseRef.current)) + 1);
@@ -173,20 +174,29 @@ function workout_Practice() {
         (current_exercise) => current_exercise.name === currentPoseRef.current
       );
 
-      angle_deg = find_angle(
-        poseResults[current_exercise.pose_landmark_1],
-        poseResults[current_exercise.pose_landmark_2],
-        poseResults[current_exercise.pose_landmark_3]
-      );
+      const {pose_landmark_1,pose_landmark_2,pose_landmark_3} = current_exercise
+      const avg_visibility = (poseResults[pose_landmark_1].visibility + poseResults[pose_landmark_2].visibility + poseResults[pose_landmark_3].visibility)/3
 
-      if (angle_deg > current_exercise.max_angle) {
-        stage = "down";
-      }
-      if (angle_deg < current_exercise.min_angle && stage === "down") {
-        stage = "up";
 
-        incrementCounter();
-        console.log(current_exercise.name);
+      if(avg_visibility>0.9){
+        setShowMessage(false)
+        angle_deg = find_angle(
+          poseResults[pose_landmark_1],
+          poseResults[pose_landmark_2],
+          poseResults[pose_landmark_3]
+        );
+  
+        if (angle_deg > current_exercise.max_angle) {
+          stage = "down";
+        }
+        if (angle_deg < current_exercise.min_angle && stage === "down") {
+          stage = "up";
+  
+          incrementCounter();
+          console.log(current_exercise.name);
+        }
+      }else{
+        setShowMessage(true)
       }
     } catch (error) {
       console.log(error);
@@ -230,6 +240,16 @@ function workout_Practice() {
       <div className="workout-Practice">
         <h2 className="workout_practice_heading">Workout - {level}</h2>
         <div className="dropdown_container">
+          {showMessage?<>
+            <div className="visible">Please be in camera range</div>
+            <div className="dropdown_style">
+              <DropDown
+                exercise_pack={exercise_pack}
+                currentPose={currentPose}
+                setCurrentPose={setCurrentPose}
+              />
+            </div>
+          </>:<>
           <div className="dropdown_style">
             <DropDown
               exercise_pack={exercise_pack}
@@ -237,6 +257,8 @@ function workout_Practice() {
               setCurrentPose={setCurrentPose}
             />
           </div>
+          </>}
+         
         </div>
         <div className="flexbox_container">
           <div className="workout_camera_and_canvas">

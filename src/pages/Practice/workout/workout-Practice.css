@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Rajdhani-Bold";
-  src: url("../../fonts/Rajdhani-Bold.ttf") format("truetype");
+  font-family: 'Rajdhani-Bold';
+  src: url('../../fonts/Rajdhani-Bold.ttf') format('truetype');
 }
 
 .workout-Practice {
@@ -8,7 +8,7 @@
 }
 
 .workout-Practice .workout_practice_heading {
-  font-family: "Rajdhani-Bold";
+  font-family: 'Rajdhani-Bold';
   color: #ff8999;
   font-weight: 800;
   font-size: 50px;
@@ -45,7 +45,7 @@
 
 #dropdown-basic-button {
   margin-top: 25px;
-  font-family: "Rajdhani-Bold";
+  font-family: 'Rajdhani-Bold';
 }
 
 .counter {
@@ -53,7 +53,7 @@
   width: 150px;
   height: 150px;
   background: #ff899969 !important;
-  font-family: "Rajdhani-Bold";
+  font-family: 'Rajdhani-Bold';
   color: #ff8999;
   font-weight: 1550;
   font-size: 90px;
@@ -74,7 +74,7 @@
   width: 640px;
   height: 480px;
   text-align: justify;
-  font-family: "Rajdhani-Bold";
+  font-family: 'Rajdhani-Bold';
   color: #ff8999;
   cursor: default;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -88,6 +88,16 @@
   resize: none;
   border: none;
   padding: 10px;
+}
+.visible {
+  display: flex;
+  align-items: center;
+  padding: 25px 40px 0 0;
+  font-family: 'Rajdhani-Bold';
+  color: #ff8999;
+  cursor: default;
+  font-weight: 500;
+  font-size: 35px;
 }
 
 @media screen and (max-width: 1200px) {
