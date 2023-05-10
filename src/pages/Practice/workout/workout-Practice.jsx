@@ -68,6 +68,7 @@ function workout_Practice() {
   const canvasRef = useRef(null);
   const connect = window.drawConnectors;
   const land = window.drawLandmarks;
+  const rectangle = window.drawRectangle
   var camera = null;
   var poseResults;
   var current_exercise;
@@ -160,13 +161,16 @@ function workout_Practice() {
       window.drawConnectors;
       canvasCtx.globalCompositeOperation = "source-over";
       connect(canvasCtx, results.poseLandmarks, poseAll.POSE_CONNECTIONS, {
-        color: "#ff5500",
-        lineWidth: 4,
+        color: "white",
+        lineWidth: 3,
       });
       land(canvasCtx, results.poseLandmarks, {
-        color: "#42ff52",
-        lineWidth: 2,
+        lineWidth: 3, color: "white", fillColor: "rgb(255,138,0)"
       });
+      rectangle(canvasCtx, results.poseLandmarks, {
+        lineWidth: 3, color: "blue", fillColor: "rgb(255,138,0)"
+      });
+
       canvasCtx.restore();
 
       poseResults = results.poseWorldLandmarks;
